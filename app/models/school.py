@@ -11,6 +11,7 @@ class School(db.Model):
 
     users = db.relationship('User', back_populates='schools')
     classes = db.relationship('Class', back_populates="schools")
+    children = db.relationship('Child', back_populates="schools")
 
     def to_dict(self):
         return {

@@ -15,9 +15,11 @@ class User(db.Model, UserMixin):
     role_cd = db.Column(db.String(10))
     school_id = db.Column(db.Integer, db.ForeignKey(
         'school.id'), nullable=False)
+    class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
 
     schools = db.relationship('School', back_populates='users')
     classes = db.relationship('Class', back_populates="users")
+    children = db.relationship('Child', back_populates="users")
 
     @property
     def password(self):
