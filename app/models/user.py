@@ -16,7 +16,8 @@ class User(db.Model, UserMixin):
     school_id = db.Column(db.Integer, db.ForeignKey(
         'school.id'), nullable=False)
 
-    schools= db.relationship('School', back_populates='users')
+    schools = db.relationship('School', back_populates='users')
+    classes = db.relationship('Class', back_populates="users")
 
     @property
     def password(self):
