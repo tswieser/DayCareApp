@@ -5,8 +5,13 @@ import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [role_cd, setRole] = useState('');
+  const [school_id, setSchool] = useState('');
+  const [class_id, setClass] = useState('');
   const [email, setEmail] = useState('');
+  const [profile_img_url, setProfileImage] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -15,28 +20,16 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(first_name, last_name, email, password, role_cd, school_id, class_id, profile_img_url));
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(["Passwords Do not match"])
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  console.log(role_cd, class_id, school_id)
 
   if (user) {
     return <Redirect to='/' />;
@@ -50,12 +43,21 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>First Name</label>
         <input
           type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
+          name='firstName'
+          onChange={(e) => setFirstName(e.target.value)}
+          value={first_name}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type='text'
+          name='lastName'
+          onChange={(e) => setLastName(e.target.value)}
+          value={last_name}
         ></input>
       </div>
       <div>
@@ -63,8 +65,17 @@ const SignUpForm = () => {
         <input
           type='text'
           name='email'
-          onChange={updateEmail}
+          onChange={(e) => setEmail(e.target.value)}
           value={email}
+        ></input>
+      </div>
+      <div>
+        <label>Image Url</label>
+        <input
+          type='text'
+          name='image'
+          onChange={(e) => setProfileImage(e.target.value)}
+          value={profile_img_url}
         ></input>
       </div>
       <div>
@@ -72,7 +83,7 @@ const SignUpForm = () => {
         <input
           type='password'
           name='password'
-          onChange={updatePassword}
+          onChange={(e) => setPassword(e.target.value)}
           value={password}
         ></input>
       </div>
@@ -81,13 +92,36 @@ const SignUpForm = () => {
         <input
           type='password'
           name='repeat_password'
-          onChange={updateRepeatPassword}
+          onChange={(e) => setRepeatPassword(e.target.value)}
           value={repeatPassword}
           required={true}
         ></input>
       </div>
+      <div>
+        <label>Select Role</label>
+        <select name="role" onChange={(e) => setRole(e.target.value)}>
+          <option></option>
+          <option value="Parent">Parent/ Guardian</option>
+          <option value="Teacher">Teacher</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div>
+        <label>Select School</label>
+        <select name="role" onChange={(e) => setSchool(e.target.value)}>
+          <option></option>
+          <option value={1}>aa-zz</option>
+        </select>
+      </div>
+      <div>
+        <label>Select Class</label>
+        <select name="role" onChange={(e) => setClass(e.target.value)}>
+          <option></option>
+          <option value={1}>infant Room</option>
+        </select>
+      </div>
       <button type='submit'>Sign Up</button>
-    </form>
+    </form >
   );
 };
 
