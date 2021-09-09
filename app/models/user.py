@@ -14,8 +14,8 @@ class User(db.Model, UserMixin):
     profile_img_url = db.Column(db.String(255))
     role_cd = db.Column(db.String(10))
     school_id = db.Column(db.Integer, db.ForeignKey(
-        'school.id'), nullable=False)
-    class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
+        'schools.id'), nullable=False)
+    class_id = db.Column(db.Integer, db.ForeignKey('classes.id'), nullable=False)
 
     schools = db.relationship('School', back_populates='users')
     classes = db.relationship('Class', back_populates="users")

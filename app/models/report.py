@@ -14,7 +14,7 @@ class Report(db.Model):
     teacher_comments = db.Column(db.Text)
     needs_cd = db.Column(db.String(50))
     highlights = db.Column(db.Text)
-    child_id = db.Column(db.Integer, db.ForeignKey('child.id'), nullable=False)
+    child_id = db.Column(db.Integer, db.ForeignKey('children.id'), nullable=False)
 
     children = db.relationship("Child", back_populates='reports')
     naps = db.relationship("Nap", back_populates="reports")

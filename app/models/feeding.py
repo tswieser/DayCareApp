@@ -11,7 +11,7 @@ class Feeding(db.Model):
     amount = db.Column(db.String(50))
     description = db.Column(db.Text)
     report_id = db.Column(db.Integer, db.ForeignKey(
-        'report.id'), nullable=False)
+        'reports.id'), nullable=False)
 
     reports = db.relationship('Report', back_populates='feedings')
 

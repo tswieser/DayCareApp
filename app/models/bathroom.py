@@ -8,7 +8,7 @@ class Bathroom(db.Model):
     time = db.Column(db.DateTime, nullable=False)
     status_cd = db.Column(db.String(50), nullable=False)
     report_id = db.Column(db.Integer, db.ForeignKey(
-        'report.id'), nullable=False)
+        'reports.id'), nullable=False)
 
     reports = db.relationship('Report', back_populates="bathroom")
 

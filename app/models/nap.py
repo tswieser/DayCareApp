@@ -9,7 +9,7 @@ class Nap(db.Model):
     end_time = db.Column(db.DateTime)
     status_cd = db.Column(db.String(50), nullable=False)
     report_id = db.Column(db.Integer, db.ForeignKey(
-        'report.id'), nullable=False)
+        'reports.id'), nullable=False)
 
     reports = db.relationship('Report', back_populates="naps")
 

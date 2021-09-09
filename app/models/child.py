@@ -14,8 +14,8 @@ class Child(db.Model):
     notes = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     school_id = db.Column(db.Integer, db.ForeignKey(
-        'school.id'), nullable=False)
-    class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
+        'schools.id'), nullable=False)
+    class_id = db.Column(db.Integer, db.ForeignKey('classes.id'), nullable=False)
 
     users = db.relationship('User', back_populates='children')
     schools = db.relationship('School', back_populates='children')
