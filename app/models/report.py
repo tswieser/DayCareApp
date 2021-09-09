@@ -19,7 +19,7 @@ class Report(db.Model):
     children = db.relationship("Child", back_populates='reports')
     naps = db.relationship("Nap", back_populates="reports")
     bathroom = db.relationship("Bathroom", back_populates="reports")
-    feedings = db.relationship("Feedings", back_populates="reports")
+    feedings = db.relationship("Feeding", back_populates="reports")
 
     def to_dict(self):
         return{

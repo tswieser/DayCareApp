@@ -7,7 +7,6 @@ class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     school_id = db.Column(db.Integer, db.ForeignKey(
         'schools.id'), nullable=False)
 
