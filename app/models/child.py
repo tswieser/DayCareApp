@@ -20,3 +20,16 @@ class Child(db.Model):
     users = db.relationship('User', back_populates='children')
     schools = db.relationship('School', back_populates='children')
     classes = db.relationship('Class', back_populates="children")
+    reports = db.relationship('Report', back_populates="children")
+
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'age': self.age,
+            'birthday': self.birthday,
+            'profile_img_url': self.profile_img_url,
+            'allergies': self.allergies,
+            'notes': self.notes,
+        }
