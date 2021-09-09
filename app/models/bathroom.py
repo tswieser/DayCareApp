@@ -11,3 +11,10 @@ class Bathroom(db.Model):
         'report.id'), nullable=False)
 
     reports = db.relationship('Report', back_populates="bathroom")
+
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'time': self.time,
+            'status_cd': self.status_cd,
+        }

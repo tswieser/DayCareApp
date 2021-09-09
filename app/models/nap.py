@@ -12,3 +12,11 @@ class Nap(db.Model):
         'report.id'), nullable=False)
 
     reports = db.relationship('Report', back_populates="naps")
+
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
+            'status_cd': self.status_cd,
+        }
