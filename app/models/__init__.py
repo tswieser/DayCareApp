@@ -5,3 +5,4 @@ from .classes import Class
 from .child import Child
 from .report import Report
 from .nap import Nap
+from .bathroom import Bathroom
