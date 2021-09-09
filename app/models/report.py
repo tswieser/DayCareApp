@@ -17,6 +17,7 @@ class Report(db.Model):
     child_id = db.Column(db.Integer, db.ForeignKey('child.id'), nullable=False)
 
     children = db.relationship("Child", back_populates='reports')
+    naps = db.relationship("Nap", back_populates="reports")
 
     def to_dict(self):
         return{
