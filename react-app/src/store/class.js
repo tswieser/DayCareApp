@@ -12,7 +12,7 @@ const createClass = (classes) => ({
 })
 
 export const getClass = (id) => async (dispatch) => {
-    const res = await fetch(`/api/classes/${id}`)
+    const res = await fetch(`/api/class/${id}`)
     const classes = await res.json()
     if (res.ok) {
         dispatch(loadClasses(classes))
@@ -21,8 +21,9 @@ export const getClass = (id) => async (dispatch) => {
 }
 
 export const postClass = (id, classes) => async (dispatch) => {
-    const res = await fetch(`/api/classes/${id}`, {
-        method: 'POST',
+    console.log(classes)
+    const res = await fetch(`/api/class/${id}`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(classes)
     })

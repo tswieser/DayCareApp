@@ -6,13 +6,13 @@ from app.forms import ClassForm
 class_routes = Blueprint('classes', __name__)
 
 
-@class_routes.route('api/class/<int:id>')
+@class_routes.route('/api/class/<int:id>')
 def get_class(id):
     all_classes = Class.query.filter(Class.school_id == id).all()
     return{'classes': [classes.to_dict() for classes in all_classes]}
 
 
-@class_routes.route('api/class/<int:id>', method=['POST'])
+@class_routes.route('/api/class/<int:id>', methods=['POST'])
 def post_class(id):
     form = ClassForm()
     form['csrf_token'].data = request.cookies['csrf_token']
