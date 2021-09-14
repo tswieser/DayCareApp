@@ -18,8 +18,8 @@ function SchoolRoute() {
         }
         classes.forEach((c) => {
             const newClass = {
-                className: c.className,
-                classDescription: c.classDescription
+                name: c.className,
+                description: c.classDescription
             }
             console.log(newClass)
         })
@@ -70,9 +70,8 @@ function SchoolRoute() {
                                 <input name="className" type="text" value={x.className} onChange={(e) => handleChange(e, i)}></input>
                                 <label htmlFor="classDescription">Class Ages / Description</label>
                                 <input name="classDescription" type="text" value={x.classDescription} onChange={(e) => handleChange(e, i)}></input>
-                                {classes.length !== 1 && <i class="fas fa-minus" onClick={handleRemoveClick} ></i>}
                                 {classes.length - 1 === i && <i class="fas fa-plus" onClick={handleAddClick}></i>}
-
+                                {classes.length !== 1 && <i class="fas fa-minus" onClick={handleRemoveClick} ></i>}
                             </div>
                         )
                     })}
