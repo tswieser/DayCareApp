@@ -9,6 +9,23 @@ function SchoolRoute() {
     const [description, setDescription] = useState("")
     const [classes, setClass] = useState([{ className: "", classDescription: "" }]);
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const school = {
+            name,
+            location,
+            description
+        }
+        classes.forEach((c) => {
+            const newClass = {
+                className: c.className,
+                classDescription: c.classDescription
+            }
+            console.log(newClass)
+        })
+        console.log(school)
+    }
+
     const handleChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...classes];
@@ -23,7 +40,7 @@ function SchoolRoute() {
     const handleAddClick = () => {
         setClass([...classes, { className: "", classDescription: "" }])
     }
-    console.log(name)
+
 
     return (
         <div>
@@ -31,23 +48,22 @@ function SchoolRoute() {
                 <h1>Register a School</h1>
             </div>
             <div className="school_form_container">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="SchoolName">School Name</label>
-                        <input name="SchoolName" type="text" onChange={(e) => setName(e.target)}></input>
+                        <label htmlFor="name">School Name</label>
+                        <input id="name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
                     </div>
                     <div>
                         <label htmlFor="location">Location</label>
-                        <input name="location" type="text" onChange={(e) => setLocation(e.target)}></input>
+                        <input name="location" type="text" onChange={(e) => setLocation(e.target.value)}></input>
                     </div>
                     <div>
                         <label htmlFor="description">Description</label>
-                        <input name="description" type="text" onChange={(e) => setDescription(e.target)}></input>
+                        <input name="description" type="text" onChange={(e) => setDescription(e.target.value)}></input>
                     </div>
                     <label>Add A Class</label>
 
                     {classes.map((x, i) => {
-                        console.log(x)
                         return (
                             <div>
                                 <label htmlFor="className">Class Name</label>
@@ -60,6 +76,9 @@ function SchoolRoute() {
                             </div>
                         )
                     })}
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
