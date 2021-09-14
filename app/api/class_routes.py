@@ -25,7 +25,7 @@ def post_class(id):
         db.session.add(classes)
         db.session.commit()
 
-      errorMessages = []
+    errorMessages = []
     for field in form.errors:
         for error in form.errors[field]:
             formattedErr = error[10:]
