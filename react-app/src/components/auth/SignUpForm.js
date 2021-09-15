@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { getSchool } from '../../store/school';
+import { getClass } from '../../store/class';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -15,7 +17,19 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
+  const schools = useSelector(state => Object.values(state.schools))
+  const classes = useSelector(state => Object.values(state.classes))
   const dispatch = useDispatch();
+
+  console.log(schools)
+
+  useEffect(() => {
+    dispatch(getSchool())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getClass(school_id))
+  }, [school_id])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -28,8 +42,6 @@ const SignUpForm = () => {
       setErrors(["Passwords Do not match"])
     }
   };
-
-  console.log(role_cd, class_id, school_id)
 
   if (user) {
     return <Redirect to='/' />;
@@ -109,15 +121,24 @@ const SignUpForm = () => {
       <div>
         <label>Select School</label>
         <select name="role" onChange={(e) => setSchool(e.target.value)}>
-          <option></option>
-          <option value={1}>aa-zz</option>
+          <option>Select A School</option>
+          {schools.map((school) => {
+            return (
+              <option value={school.id}>{school.name}</option>
+            )
+          })}
         </select>
       </div>
       <div>
         <label>Select Class</label>
         <select name="role" onChange={(e) => setClass(e.target.value)}>
-          <option></option>
-          <option value={1}>infant Room</option>
+          <option>Select A Class Room</option>
+          {classes.map((allClass) => {
+            return (
+              <option value={allClass.id}>{allClass.name}</option>
+            )
+          })}
+
         </select>
       </div>
       <button type='submit'>Sign Up</button>

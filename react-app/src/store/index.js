@@ -6,8 +6,8 @@ import classReducer from './class';
 
 const rootReducer = combineReducers({
   session,
-  schoolReducer,
-  classReducer
+  schools: schoolReducer,
+  classes: classReducer
 });
 
 
