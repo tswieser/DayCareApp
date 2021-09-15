@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { postSchool } from '../../store/school'
 import { postClass } from '../../store/class'
 import { useDispatch } from 'react-redux'
@@ -7,7 +8,7 @@ import { useDispatch } from 'react-redux'
 
 function SchoolRoute() {
     const dispatch = useDispatch();
-
+    const history = useHistory()
     const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
     const [location, setLocation] = useState("")
@@ -38,6 +39,7 @@ function SchoolRoute() {
                 return
             }
         })
+        history.push('/sign-up')
     }
 
 
