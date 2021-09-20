@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import SchoolRoute from './components/SchoolPage';
 import User from './components/User';
+import ReportPage from './components/Report'
+import ChildPage from './components/ChildPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -43,6 +45,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/report' exact={true} >
+          <ReportPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/children' exact={true} >
+          <ChildPage />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>

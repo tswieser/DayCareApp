@@ -132,7 +132,7 @@ const SignUpForm = () => {
       <div>
         <label>Select Class</label>
         <select name="role" onChange={(e) => setClass(e.target.value)}>
-          <option>Select A Class Room</option>
+          <option>{school_id ? "Select A Class Room": "Select School First"}</option>
           {classes.map((allClass) => {
             return (
               <option value={allClass.id}>{allClass.name}</option>
