@@ -1,17 +1,45 @@
 
 import React from 'react';
+import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
-  return (
-    <nav>
+  const sessionUser = useSelector(state => state.session.user)
+
+
+
+
+  let sessionLinks;
+  if (sessionUser) {
+    if (sessionUser.role_cd === 'Admin' || sessionUser.role_cd === 'Teacher') {
+      sessionLinks = (
+        <ul>
+          <li>
+            Admin/ teacher
+          </li>
+          <li>
+            <LogoutButton />
+          </li>
+        </ul>
+      );
+    } else {
+      sessionLinks = (
+        <ul>
+          <li>
+            <NavLink to='/children' exact={true} activeClassName='active'>
+              Children
+            </NavLink>
+          </li>
+          <li>
+            <LogoutButton />
+          </li>
+        </ul>
+      );
+    }
+  } else {
+    sessionLinks = (
       <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
         <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
@@ -27,10 +55,24 @@ const NavBar = () => {
             School Registration
           </NavLink>
         </li>
-        <li>
-          <LogoutButton />
-        </li>
       </ul>
+    )
+  }
+
+
+
+  return (
+    <nav>
+      <div>
+        <div>
+          <NavLink to='/' exact={true} activeClassName='active'>
+            Home
+          </NavLink>
+        </div>
+        <div>
+          {sessionLinks}
+        </div>
+      </div>
     </nav>
   );
 }
