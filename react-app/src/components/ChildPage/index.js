@@ -1,8 +1,13 @@
+import React from 'react'
+import ChildModal from '../addChildModal'
+
+
+
 const ChildPage = () => {
 
 
     return (
-        <h1>Child Page</h1>
+        <ChildModal />
     )
 }
 
