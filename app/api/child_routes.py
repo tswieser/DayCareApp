@@ -10,4 +10,6 @@ def get_parent_kids():
     return {'children':[children.to_dict() for children in all_children]}
 
 
-
+@child_routes.route('/children')
+def post_kid():
+    
